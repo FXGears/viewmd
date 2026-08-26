@@ -32,17 +32,17 @@ Set as default: right-click any `.md` file → Open with → select `viewmd.exe`
 
 ## How It Compares
 
-| | ViewMD | Typora | Marktext | Tinta | Obsidian |
+| | **ViewMD** | *Typora* | *Marktext* | *Tinta* | *Obsidian* |
 |---|---|---|---|---|---|
-| Opens a markdown file | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Binary size | **652 KB** | 90 MB | 180 MB | 1.8 MB | 300+ MB |
-| Startup time | <100ms | ~2s | ~3s | ~100ms | ~4s |
-| Electron inside | No | No | Yes | No | Yes |
-| Wants to manage your files | No | No | No | No | Yes |
-| Has a settings page | No | Yes | Yes | Yes | Yes |
-| Has plugin system | No | No | Yes | No | Yes |
-| Requires account | No | No | No | No | Optional (but it'll ask) |
-| Phones home | No | Yes | No | No | Yes |
+| Opens a markdown file | **✓** | *✓* | *✓* | *✓* | *✓* |
+| Binary size | **652 KB** | *90 MB* | *180 MB* | *1.8 MB* | *300+ MB* |
+| Startup time | **<100ms** | *~2s* | *~3s* | *~100ms* | *~4s* |
+| Electron inside | **No** | *No* | *Yes* | *No* | *Yes* |
+| Wants to manage your files | **No** | *No* | *No* | *No* | *Yes* |
+| Has a settings page | **No** | *Yes* | *Yes* | *Yes* | *Yes* |
+| Has plugin system | **No** | *No* | *Yes* | *No* | *Yes* |
+| Requires account | **No** | *No* | *No* | *No* | *Optional (but it'll ask)* |
+| Phones home | **No** | *No* | *No* | *No* | *Yes* |
 | **Features you'll never use** | **0** | **47** | **63** | **28** | **∞** |
 
 ## Non-Goals
