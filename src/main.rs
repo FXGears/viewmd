@@ -1,5 +1,6 @@
 #![windows_subsystem = "windows"]
 
+use image::GenericImageView;
 use pulldown_cmark::{Options, Parser, html};
 use tao::event::{Event, WindowEvent};
 use tao::event_loop::{ControlFlow, EventLoop};
@@ -53,7 +54,8 @@ a:hover { text-decoration: underline; }
 img { max-width: 100%; }
 hr { border: none; border-top: 1px solid #21262d; margin: 24px 0; }
 ul, ol { padding-left: 2em; }
-li + li { margin-top: 0.25em; }
+li + li { margin-top: 0.5em; }
+li { line-height: 1.7; }
 strong { font-weight: 600; color: #f0f6fc; }
 </style>
 "#;
@@ -98,8 +100,15 @@ fn main() {
     let mut web_context = WebContext::new(Some(data_dir));
 
     let event_loop = EventLoop::new();
+    let icon = {
+        let bytes = include_bytes!("../resources/icon-512.png");
+        let img = image::load_from_memory(bytes).expect("Failed to load icon").to_rgba8();
+        let (w, h) = img.dimensions();
+        tao::window::Icon::from_rgba(img.into_raw(), w, h).expect("Failed to create icon")
+    };
     let window = WindowBuilder::new()
         .with_title(&title)
+        .with_window_icon(Some(icon))
         .with_inner_size(tao::dpi::LogicalSize::new(920.0, 700.0))
         .build(&event_loop)
         .expect("Failed to create window");
