@@ -72,6 +72,15 @@ If you want those things, use [Tinta](https://tinta.cc), [Markpad](https://githu
 | Renderer | WebView2 + GitHub-dark CSS |
 | License | GPL-3.0 |
 
+## Install from Binary
+
+1. Download `viewmd.exe` from [Releases](https://github.com/FXGears/viewmd/releases)
+2. Copy to `C:\Program Files\ViewMD\` (or anywhere you like)
+3. Right-click any `.md` file → Open with → Choose another app → browse to `viewmd.exe`
+4. Check "Always use this app"
+
+Done. No installer, no runtime, no dependencies.
+
 ## Building
 
 ```
