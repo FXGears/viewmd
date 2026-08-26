@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background: dark navy rounded square -->
+  <rect width="512" height="512" rx="80" fill="#0F172A"/>
+  
+  <!-- Bold chevron/angle bracket > slightly tilted -->
+  <g transform="translate(256, 256) rotate(0)">
+    <polyline points="-60,-120 80,0 -60,120" 
+              fill="none" stroke="#3B82F6" stroke-width="44" 
+              stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
