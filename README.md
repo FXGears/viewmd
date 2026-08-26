@@ -53,7 +53,7 @@ Or just double-click a `.md` file after setting the file association.
 - **Dependencies:** None (WebView2 is pre-installed on Windows 10/11)
 - **Written in:** Rust
 - **Rendering:** WebView2 with GitHub-dark styling
-- **License:** MIT
+- **License:** GPL-3.0
 
 ## Building
 
