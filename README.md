@@ -2,7 +2,7 @@
 
 [![Release](https://img.shields.io/github/v/release/FXGears/viewmd?style=flat-square)](https://github.com/FXGears/viewmd/releases)
 [![License](https://img.shields.io/github/license/FXGears/viewmd?style=flat-square)](LICENSE)
-[![Binary Size](https://img.shields.io/badge/binary-652_KB-blue?style=flat-square)]()
+[![Binary Size](https://img.shields.io/badge/binary-758_KB-blue?style=flat-square)]()
 [![No Electron](https://img.shields.io/badge/electron-none-green?style=flat-square)]()
 
 **Under 1 MB. Under 100ms. Opens a markdown file. Closes when you're done.**
@@ -15,27 +15,22 @@ No editor. No tabs. No sidebar. No plugins. No settings. No config files. No int
 
 ## Install
 
-**Winget:**
-```
-winget install vRED.ViewMD
-```
+Download `viewmd.exe` from [Releases](https://github.com/FXGears/viewmd/releases). No installer. It's one file.
 
-**Scoop:**
-```
-scoop bucket add viewmd https://github.com/FXGears/viewmd
-scoop install viewmd
-```
+Set as default:
 
-**Manual:** Download `viewmd.exe` from [Releases](https://github.com/FXGears/viewmd/releases). No installer. It's one file.
+1. Right-click any `.md` file → Open with → Choose another app
+2. Browse to `viewmd.exe`
+3. Check "Always use this app"
 
-Set as default: right-click any `.md` file → Open with → select `viewmd.exe` → "Always use this app."
+Done.
 
 ## How It Compares
 
 | | **ViewMD** | *Typora* | *Marktext* | *Tinta* | *Obsidian* |
 |---|---|---|---|---|---|
 | Opens a markdown file | **✓** | *✓* | *✓* | *✓* | *✓* |
-| Binary size | **652 KB** | *90 MB* | *180 MB* | *1.8 MB* | *300+ MB* |
+| Binary size | **758 KB** | *90 MB* | *180 MB* | *1.8 MB* | *300+ MB* |
 | Startup time | **<100ms** | *~2s* | *~3s* | *~100ms* | *~4s* |
 | Electron inside | **No** | *No* | *Yes* | *No* | *Yes* |
 | Wants to manage your files | **No** | *No* | *No* | *No* | *Yes* |
@@ -64,22 +59,13 @@ If you want those things, use [Tinta](https://tinta.cc), [Markpad](https://githu
 
 | | |
 |---|---|
-| Binary | 652 KB |
+| Binary | 758 KB |
 | Memory | ~30 MB |
 | Cold start | <100ms |
 | Runtime deps | None (WebView2 ships with Windows 10/11) |
 | Language | Rust |
 | Renderer | WebView2 + GitHub-dark CSS |
 | License | GPL-3.0 |
-
-## Install from Binary
-
-1. Download `viewmd.exe` from [Releases](https://github.com/FXGears/viewmd/releases)
-2. Copy to `C:\Program Files\ViewMD\` (or anywhere you like)
-3. Right-click any `.md` file → Open with → Choose another app → browse to `viewmd.exe`
-4. Check "Always use this app"
-
-Done. No installer, no runtime, no dependencies.
 
 ## Building
 
