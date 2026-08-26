@@ -7,6 +7,8 @@
 
 A markdown viewer for Windows. Nothing else.
 
+Every other markdown tool wants to be your editor, your notebook, your second brain, or your publishing pipeline. ViewMD just opens the file.
+
 ![ViewMD screenshot](resources/screenshot.png)
 
 ## How It Compares
@@ -22,35 +24,22 @@ A markdown viewer for Windows. Nothing else.
 | Has plugin system | No | No | Yes | No | Yes |
 | Requires account | No | No | No | No | Optional (but it'll ask) |
 | Phones home | No | Yes | No | No | Yes |
-| Features you'll never use | 0 | 47 | 63 | 28 | ∞ |
+| **Features you'll never use** | **0** | **47** | **63** | **28** | **∞** |
 
 ## Philosophy
 
-ViewMD does one thing: renders a `.md` file in a window. No editor, no tabs, no sidebar, no plugins, no settings, no config files, no internet connection, no telemetry.
+Open. Read. Close.
 
-Double-click a markdown file. Read it. Close the window.
+No editor. No tabs. No sidebar. No plugins. No settings. No config files. No internet. No telemetry. No decisions.
 
-## Goals
-
-- **Instant.** Opens faster than you can blink. Sub-100ms cold start.
-- **Tiny.** Under 1MB binary. No runtime dependencies beyond what Windows 11 already has (WebView2).
-- **Silent.** No update prompts, no splash screen, no first-run wizard, no notifications.
-- **Stable.** One job, done correctly, forever.
-
-## Non-Goals
-
-- Editing
-- Tabs
-- File watching / live reload
-- Themes or customization
-- Mermaid / LaTeX / diagrams
-- Export to PDF / Word / HTML
-- Plugin system
-- Cross-platform support
-
-If you want those things, use [Tinta](https://tinta.cc), [Markpad](https://github.com/alecdotdev/Markpad), or [Typora](https://typora.io). They're good. ViewMD is for people who just want to read a file.
+652 KB. Sub-100ms cold start. Dark mode. GitHub-width content. Standard window chrome. That's the whole product.
 
 ## Install
+
+**Winget:**
+```
+winget install vRED.ViewMD
+```
 
 **Scoop:**
 ```
@@ -60,28 +49,34 @@ scoop install viewmd
 
 **Manual:** Download `viewmd.exe` from [Releases](https://github.com/FXGears/viewmd/releases) and put it anywhere.
 
-To set as default for `.md` files:
-1. Right-click any `.md` file → Open with → Choose another app
-2. Select `viewmd.exe`
-3. Check "Always use this app"
+Then set as default: right-click any `.md` file → Open with → Choose another app → select `viewmd.exe` → "Always use this app."
 
-## Usage
+## Non-Goals
 
-```
-viewmd.exe document.md
-```
+These will never be added:
 
-Or just double-click a `.md` file after setting the file association.
+- Editing
+- Tabs
+- File watching
+- Themes
+- Mermaid / LaTeX / diagrams
+- Export
+- Plugin system
+- Cross-platform
+
+If you want those things, use [Tinta](https://tinta.cc), [Markpad](https://github.com/alecdotdev/Markpad), or [Typora](https://typora.io). They're good at being everything. ViewMD is good at being nothing except fast.
 
 ## Specs
 
-- **Binary size:** 630 KB
-- **Memory usage:** ~30 MB (WebView2 process)
-- **Startup time:** <100ms
-- **Dependencies:** None (WebView2 is pre-installed on Windows 10/11)
-- **Written in:** Rust
-- **Rendering:** WebView2 with GitHub-dark styling
-- **License:** GPL-3.0
+| | |
+|---|---|
+| Binary | 652 KB |
+| Memory | ~30 MB |
+| Cold start | <100ms |
+| Runtime deps | None (WebView2 ships with Windows 10/11) |
+| Language | Rust |
+| Renderer | WebView2 + GitHub-dark CSS |
+| License | GPL-3.0 |
 
 ## Building
 
@@ -89,8 +84,4 @@ Or just double-click a `.md` file after setting the file association.
 cargo build --release
 ```
 
-Requires:
-- Rust (stable)
-- Visual Studio Build Tools (for MSVC linker)
-
-Output: `target/release/viewmd.exe`
+Requires Rust (stable) and Visual Studio Build Tools. Output: `target/release/viewmd.exe`
