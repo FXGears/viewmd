@@ -5,11 +5,30 @@
 [![Binary Size](https://img.shields.io/badge/binary-652_KB-blue?style=flat-square)]()
 [![No Electron](https://img.shields.io/badge/electron-none-green?style=flat-square)]()
 
-A markdown viewer for Windows. Nothing else.
+**Under 1 MB. Under 100ms. Opens a markdown file. Closes when you're done.**
 
 Every other markdown tool wants to be your editor, your notebook, your second brain, or your publishing pipeline. ViewMD just opens the file.
 
+No editor. No tabs. No sidebar. No plugins. No settings. No config files. No internet. No telemetry. No decisions.
+
 ![ViewMD screenshot](resources/screenshot.png)
+
+## Install
+
+**Winget:**
+```
+winget install vRED.ViewMD
+```
+
+**Scoop:**
+```
+scoop bucket add viewmd https://github.com/FXGears/viewmd
+scoop install viewmd
+```
+
+**Manual:** Download `viewmd.exe` from [Releases](https://github.com/FXGears/viewmd/releases). No installer. It's one file.
+
+Set as default: right-click any `.md` file → Open with → select `viewmd.exe` → "Always use this app."
 
 ## How It Compares
 
@@ -25,31 +44,6 @@ Every other markdown tool wants to be your editor, your notebook, your second br
 | Requires account | No | No | No | No | Optional (but it'll ask) |
 | Phones home | No | Yes | No | No | Yes |
 | **Features you'll never use** | **0** | **47** | **63** | **28** | **∞** |
-
-## Philosophy
-
-Open. Read. Close.
-
-No editor. No tabs. No sidebar. No plugins. No settings. No config files. No internet. No telemetry. No decisions.
-
-652 KB. Sub-100ms cold start. Dark mode. GitHub-width content. Standard window chrome. That's the whole product.
-
-## Install
-
-**Winget:**
-```
-winget install vRED.ViewMD
-```
-
-**Scoop:**
-```
-scoop bucket add viewmd https://github.com/FXGears/viewmd
-scoop install viewmd
-```
-
-**Manual:** Download `viewmd.exe` from [Releases](https://github.com/FXGears/viewmd/releases) and put it anywhere.
-
-Then set as default: right-click any `.md` file → Open with → Choose another app → select `viewmd.exe` → "Always use this app."
 
 ## Non-Goals
 
