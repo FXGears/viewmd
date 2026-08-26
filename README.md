@@ -43,7 +43,9 @@ Set as default: right-click any `.md` file → Open with → select `viewmd.exe`
 | Has plugin system | No | No | Yes | No | Yes |
 | Requires account | No | No | No | No | Optional (but it'll ask) |
 | Phones home | No | Yes | No | No | Yes |
-| **Features you'll never use** | **0** | **47** | **63** | **28** | **∞** |
+
+> ### Features you'll never use
+> **ViewMD: 0** · Typora: 47 · Marktext: 63 · Tinta: 28 · Obsidian: ∞
 
 ## Non-Goals
 
