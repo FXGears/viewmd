@@ -1,7 +1,7 @@
 {
     "version": "0.9.1",
     "description": "The fastest way to read a markdown file on Windows. 652KB. No bloat.",
-    "homepage": "https://github.com/FXGears/viewmd",
+    "homepage": "https://volatility.red",
     "license": "GPL-3.0-only",
     "architecture": {
         "64bit": {
