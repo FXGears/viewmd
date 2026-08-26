@@ -1,8 +1,8 @@
 [package]
-name = "mdview"
+name = "viewmd"
 version = "0.1.0"
 edition = "2024"
-description = "Lightweight Win11 markdown viewer"
+description = "ViewMD - Lightweight markdown viewer for Windows"
 
 [dependencies]
 wry = "0.51"

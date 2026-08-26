@@ -77,14 +77,14 @@ fn main() {
             Err(e) => format!("# Error\n\nCould not read file: `{path}`\n\n```\n{e}\n```"),
         }
     } else {
-        String::from("# mdview\n\nNo file specified.\n\nUsage: `mdview <file.md>`")
+        String::from("# ViewMD\n\nNo file specified.\n\nUsage: `viewmd <file.md>`")
     };
 
     let title = if args.len() > 1 {
         let path = std::path::Path::new(&args[1]);
-        format!("{} — mdview", path.file_name().unwrap_or_default().to_string_lossy())
+        format!("{} — ViewMD", path.file_name().unwrap_or_default().to_string_lossy())
     } else {
-        String::from("mdview")
+        String::from("ViewMD")
     };
 
     let html = render_markdown(&md_content);
