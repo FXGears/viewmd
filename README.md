@@ -9,7 +9,7 @@
 
 Every other markdown tool wants to be your editor, your notebook, your second brain, or your publishing pipeline. ViewMD just opens the file.
 
-No editor. No tabs. No sidebar. No plugins. No settings. No config files. No internet. No telemetry. No decisions.
+No editor. No tabs. No sidebar. No plugins. No settings. No config files. No internet. No telemetry. No decisions. Dark theme only.
 
 ![ViewMD screenshot](resources/screenshot.png)
 
