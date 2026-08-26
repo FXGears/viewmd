@@ -10,6 +10,9 @@ wry = "0.51"
 tao = "0.33"
 pulldown-cmark = { version = "0.12", default-features = false, features = ["html"] }
 
+[build-dependencies]
+winresource = "0.1"
+
 [profile.release]
 opt-level = "z"
 lto = true
