@@ -1,5 +1,10 @@
 # ViewMD
 
+[![Release](https://img.shields.io/github/v/release/FXGears/viewmd?style=flat-square)](https://github.com/FXGears/viewmd/releases)
+[![License](https://img.shields.io/github/license/FXGears/viewmd?style=flat-square)](LICENSE)
+[![Binary Size](https://img.shields.io/badge/binary-652_KB-blue?style=flat-square)]()
+[![No Electron](https://img.shields.io/badge/electron-none-green?style=flat-square)]()
+
 A markdown viewer for Windows. Nothing else.
 
 ![ViewMD screenshot](resources/screenshot.png)
@@ -47,7 +52,13 @@ If you want those things, use [Tinta](https://tinta.cc), [Markpad](https://githu
 
 ## Install
 
-Download `viewmd.exe` from [Releases](https://github.com/FXGears/viewmd/releases) and put it anywhere.
+**Scoop:**
+```
+scoop bucket add viewmd https://github.com/FXGears/viewmd
+scoop install viewmd
+```
+
+**Manual:** Download `viewmd.exe` from [Releases](https://github.com/FXGears/viewmd/releases) and put it anywhere.
 
 To set as default for `.md` files:
 1. Right-click any `.md` file → Open with → Choose another app
