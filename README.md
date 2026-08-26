@@ -2,6 +2,8 @@
 
 A markdown viewer for Windows. Nothing else.
 
+![ViewMD screenshot](resources/screenshot.png)
+
 ## Philosophy
 
 ViewMD does one thing: renders a `.md` file in a window. No editor, no tabs, no sidebar, no plugins, no settings, no config files, no internet connection, no telemetry.
