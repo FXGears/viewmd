@@ -1,8 +1,10 @@
+#![windows_subsystem = "windows"]
+
 use pulldown_cmark::{Options, Parser, html};
 use tao::event::{Event, WindowEvent};
 use tao::event_loop::{ControlFlow, EventLoop};
 use tao::window::WindowBuilder;
-use wry::WebViewBuilder;
+use wry::{WebContext, WebViewBuilder};
 
 const CSS: &str = r#"
 <style>
@@ -89,6 +91,12 @@ fn main() {
 
     let html = render_markdown(&md_content);
 
+    let data_dir = {
+        let appdata = std::env::var("LOCALAPPDATA").unwrap_or_else(|_| String::from("."));
+        std::path::PathBuf::from(appdata).join("ViewMD")
+    };
+    let mut web_context = WebContext::new(Some(data_dir));
+
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new()
         .with_title(&title)
@@ -96,7 +104,7 @@ fn main() {
         .build(&event_loop)
         .expect("Failed to create window");
 
-    let _webview = WebViewBuilder::new()
+    let _webview = WebViewBuilder::with_web_context(&mut web_context)
         .with_html(&html)
         .build(&window)
         .expect("Failed to create webview");
