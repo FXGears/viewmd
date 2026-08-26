@@ -1,6 +1,5 @@
 #![windows_subsystem = "windows"]
 
-use image::GenericImageView;
 use pulldown_cmark::{Options, Parser, html};
 use tao::event::{Event, WindowEvent};
 use tao::event_loop::{ControlFlow, EventLoop};
@@ -19,6 +18,10 @@ body {
     margin: 0 auto;
     padding: 32px 24px;
 }
+::-webkit-scrollbar { width: 10px; background: #0d1117; }
+::-webkit-scrollbar-thumb { background: #30363d; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #484f58; }
+html { background: #0d1117; }
 h1, h2, h3, h4, h5, h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25; color: #f0f6fc; }
 h1 { font-size: 2em; padding-bottom: 0.3em; border-bottom: 1px solid #21262d; }
 h2 { font-size: 1.5em; padding-bottom: 0.3em; border-bottom: 1px solid #21262d; }
@@ -101,10 +104,13 @@ fn main() {
 
     let event_loop = EventLoop::new();
     let icon = {
-        let bytes = include_bytes!("../resources/icon-512.png");
-        let img = image::load_from_memory(bytes).expect("Failed to load icon").to_rgba8();
-        let (w, h) = img.dimensions();
-        tao::window::Icon::from_rgba(img.into_raw(), w, h).expect("Failed to create icon")
+        let bytes = include_bytes!("../resources/icon-64.png");
+        let decoder = png::Decoder::new(std::io::Cursor::new(bytes));
+        let mut reader = decoder.read_info().expect("Failed to read icon PNG");
+        let mut buf = vec![0u8; reader.output_buffer_size()];
+        let info = reader.next_frame(&mut buf).expect("Failed to decode icon");
+        buf.truncate(info.buffer_size());
+        tao::window::Icon::from_rgba(buf, info.width, info.height).expect("Failed to create icon")
     };
     let window = WindowBuilder::new()
         .with_title(&title)
