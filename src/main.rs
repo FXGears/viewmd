@@ -1,5 +1,8 @@
 #![windows_subsystem = "windows"]
 
+#[cfg(feature = "beta_render")]
+mod native;
+
 use std::os::windows::fs::OpenOptionsExt;
 
 use pulldown_cmark::{Options, Parser, html};
@@ -191,6 +194,20 @@ impl StartupTrace {
     }
 }
 
+/// Decodes the embedded PNG into a window icon.
+///
+/// Returns:
+///     The icon used for the title bar, taskbar, and Alt-Tab.
+fn load_icon() -> tao::window::Icon {
+    let bytes = include_bytes!("../resources/icon-64.png");
+    let decoder = png::Decoder::new(std::io::Cursor::new(bytes));
+    let mut reader = decoder.read_info().expect("Failed to read icon PNG");
+    let mut buf = vec![0u8; reader.output_buffer_size()];
+    let info = reader.next_frame(&mut buf).expect("Failed to decode icon");
+    buf.truncate(info.buffer_size());
+    tao::window::Icon::from_rgba(buf, info.width, info.height).expect("Failed to create icon")
+}
+
 fn main() {
     let trace = std::rc::Rc::new(std::cell::RefCell::new(StartupTrace::new()));
 
@@ -203,26 +220,46 @@ fn main() {
         std::env::set_var("WEBVIEW2_DEFAULT_BACKGROUND_COLOR", "FF0D1117");
     }
 
-    let args: Vec<String> = std::env::args().collect();
+    // `--beta_render` selects the native Direct2D renderer instead of WebView2.
+    // Anything else that starts with `-` is ignored so the first bare argument
+    // is always the file path.
+    let mut beta_render = false;
+    let mut file_arg: Option<String> = None;
+    for arg in std::env::args().skip(1) {
+        match arg.as_str() {
+            "--beta_render" => beta_render = true,
+            _ if arg.starts_with('-') => {}
+            _ if file_arg.is_none() => file_arg = Some(arg),
+            _ => {}
+        }
+    }
 
-    let md_content = if args.len() > 1 {
-        let path = &args[1];
-        match std::fs::read_to_string(path) {
+    let md_content = match &file_arg {
+        Some(path) => match std::fs::read_to_string(path) {
             Ok(content) => content,
             Err(e) => format!("# Error\n\nCould not read file: `{path}`\n\n```\n{e}\n```"),
-        }
-    } else {
-        String::from("# ViewMD\n\nNo file specified.\n\nUsage: `viewmd <file.md>`")
+        },
+        None => String::from("# ViewMD\n\nNo file specified.\n\nUsage: `viewmd <file.md>`"),
     };
 
-    let title = if args.len() > 1 {
-        let path = std::path::Path::new(&args[1]);
-        format!("{} — ViewMD", path.file_name().unwrap_or_default().to_string_lossy())
-    } else {
-        String::from("ViewMD")
+    let title = match &file_arg {
+        Some(path) => {
+            let path = std::path::Path::new(path);
+            format!("{} — ViewMD", path.file_name().unwrap_or_default().to_string_lossy())
+        }
+        None => String::from("ViewMD"),
     };
 
     trace.borrow_mut().mark("file_read");
+
+    if beta_render {
+        // The native path needs no WebView2 profile, so it skips all of the
+        // profile and lock handling below. In a build without the `beta_render`
+        // feature this block is empty, so `--beta_render` is accepted and ignored
+        // and the WebView2 path runs as usual.
+        #[cfg(feature = "beta_render")]
+        native::run(&md_content, &title, load_icon(), trace.clone());
+    }
 
     let html = render_markdown(&md_content);
     trace.borrow_mut().mark("markdown_rendered");
@@ -246,15 +283,7 @@ fn main() {
 
     let event_loop = EventLoop::new();
     trace.borrow_mut().mark("event_loop");
-    let icon = {
-        let bytes = include_bytes!("../resources/icon-64.png");
-        let decoder = png::Decoder::new(std::io::Cursor::new(bytes));
-        let mut reader = decoder.read_info().expect("Failed to read icon PNG");
-        let mut buf = vec![0u8; reader.output_buffer_size()];
-        let info = reader.next_frame(&mut buf).expect("Failed to decode icon");
-        buf.truncate(info.buffer_size());
-        tao::window::Icon::from_rgba(buf, info.width, info.height).expect("Failed to create icon")
-    };
+    let icon = load_icon();
     let window = WindowBuilder::new()
         .with_title(&title)
         .with_window_icon(Some(icon))

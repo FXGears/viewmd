@@ -2325,6 +2325,8 @@ dependencies = [
  "png",
  "pulldown-cmark",
  "tao",
+ "windows",
+ "windows-numerics",
  "winresource",
  "wry",
 ]
