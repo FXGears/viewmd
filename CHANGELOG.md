@@ -1,5 +1,36 @@
 # Changelog
 
+## v0.10.0
+
+**Startup no longer flashes white.** The window stays hidden until the document has
+finished rendering, so it appears with content already painted instead of showing an
+empty white page first. WebView2 paints a white surface underneath web content before
+any HTML loads; deferring the window past that is the only reliable fix.
+
+**The WebView2 profile no longer accumulates.** It moved from a permanent folder in
+`%LOCALAPPDATA%\ViewMD` to a per-process one under `%TEMP%`, reclaimed on a later
+launch. The old folder grew to roughly 30 MB with use — about forty times the size of
+the binary — and that growth was itself slowing down launches. Nothing persists between
+runs now.
+
+If you ran 0.9.x, `%LOCALAPPDATA%\ViewMD` is left behind and is safe to delete by hand.
+Nothing writes to it any more and new installs never create it.
+
+**Closing the window reliably exits.** Previously the message pump could block with the
+process still alive, holding its profile folder. A real mouse click always worked, so
+this was only visible to scripts.
+
+**Optional native renderer, off by default** (`--beta_render`, requires a build with
+`--features beta_render`). A Direct2D/DirectWrite renderer that skips WebView2 entirely.
+It is not in stock releases and adds nothing to them. See
+[BETA-RENDERER.md](BETA-RENDERER.md).
+
+**Startup timing instrumentation** behind the `VIEWMD_TRACE` environment variable.
+Inert unless set, costing one environment lookup.
+
+Fixed a version mismatch: `Cargo.toml` had been left at `0.1.0` since before the first
+release.
+
 ## v0.9.1
 
 - App icon: double-pane glass viewport, steel blue on dark navy
